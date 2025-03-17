@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+	    <typeAlias alias="User" type="com.project.domain.User"/>
+		<typeAlias alias="BoardDto" type="com.project.domain.BoardDto"/>
+		<typeAlias alias="CommentDto" type="com.project.domain.CommentDto"/>
+		<typeAlias alias="SearchCondition" type="com.project.domain.SearchCondition"/>
+	</typeAliases>
+</configuration>
