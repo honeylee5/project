@@ -4,9 +4,9 @@
 		"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-	    <typeAlias alias="User" type="com.project.domain.User"/>
-		<typeAlias alias="BoardDto" type="com.project.domain.BoardDto"/>
-		<typeAlias alias="CommentDto" type="com.project.domain.CommentDto"/>
-		<typeAlias alias="SearchCondition" type="com.project.domain.SearchCondition"/>
+	    <typeAlias alias="User" type="com.project.board.domain.User"/>
+		<typeAlias alias="BoardDto" type="com.project.board.domain.BoardDto"/>
+		<typeAlias alias="CommentDto" type="com.project.board.domain.CommentDto"/>
+		<typeAlias alias="SearchCondition" type="com.project.board.domain.SearchCondition"/>
 	</typeAliases>
 </configuration>
