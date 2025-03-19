@@ -68,7 +68,7 @@
     <h3 id="title">Login</h3>
     <div id="msg">
         <c:if test="${not empty param.msg}">
-            <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg)}</i>
+            <i class="fa fa-exclamation-circle" >${URLDecoder.decode(param.msg)}</i>
         </c:if>
     </div>
     <input type="text" name="id" value="${cookie.id.value}" placeholder="이메일 입력" autofocus>
@@ -81,18 +81,21 @@
         <a href="<c:url value='/register/add'/>">회원가입</a>
     </div>
     <script>
+        // 로그인 유효성 검사
         function formCheck(frm) {
             let msg ='';
-            if(frm.id.value.length==0) {
+            if(frm.id.value.length == 0) {
                 setMessage('id를 입력해주세요.', frm.id);
                 return false;
             }
-            if(frm.pwd.value.length==0) {
+            if(frm.pwd.value.length == 0) {
                 setMessage('password를 입력해주세요.', frm.pwd);
                 return false;
             }
             return true;
         }
+        
+        // 알림문구
         function setMessage(msg, element){
             document.getElementById("msg").innerHTML = ` ${'${msg}'}`;
             if(element) {

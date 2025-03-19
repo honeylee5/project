@@ -78,11 +78,11 @@
     <div class="title">Register</div>
     <div id="msg" class="msg"><form:errors path="id"/></div>
     <label for="">아이디</label>
-    <input class="input-field" type="text" name="id" placeholder="8~12자리의 영대소문자와 숫자 조합">
+    <input class="input-field" type="text" name="id" placeholder="5~12자리의 영대소문자와 숫자 조합" maxlength="12" required>
     <label for="">비밀번호</label>
-    <input class="input-field" type="password" name="pwd" id="pwd" placeholder="8~12자리의 영대소문자와 숫자 조합">
+    <input class="input-field" type="password" name="pwd" id="pwd" placeholder="4~12자리의 영대소문자와 숫자 조합" maxlength="12" required>
     <label for="">비밀번호 확인</label>
-    <input class="input-field" type="password" name="pwd2" id="pwd2" placeholder="8~12자리의 영대소문자와 숫자 조합"> 
+    <input class="input-field" type="password" name="pwd2" id="pwd2" placeholder="4~12자리의 영대소문자와 숫자 조합" maxlength="12" required> 
     <span id="result"></span>
     <label for="">이름</label>
     <input class="input-field" type="text" name="name" placeholder="홍길동">
@@ -95,19 +95,36 @@
         <label><input type="checkbox" name="sns" value="kakaotalk"/>카카오톡</label>
         <label><input type="checkbox" name="sns" value="instagram"/>인스타그램</label>
     </div>
-    <input id="submit" type="submit" value="회원 가입" onclick="formSubmit()">
+    <input id="submit" type="submit" value="회원 가입">
 </form>    
 
 <script>
+    // 회원가입 유효성 검사
     function formCheck(frm) {
-        let msg ='';
-        if(frm.id.value.length<3) {
+        var form = document.form;
+        var msg = '';
+        if(frm.id.value.length < 5) {
             setMessage('id의 길이는 3이상이어야 합니다.', frm.id);
             return false;
+        } else if(frm.pwd.value.length < 4 && frm.pwd2.value.length < 4) {
+        	setMessage('pwd의 길이는 4이상이어야 합니다.', frm.pwd);
+            return false;
+        } else if(frm.pwd.value != frm.pwd2.value) {
+        	setMessage('비밀번호가 일치하지 않습니다.', frm.pwd);
+            return false;
+        } else {
+        	if(confirm("회원가입 하시겠습니까?")) {
+        		alert("회원가입이 정상적으로 완료되었습니다.");
+        		return true;
+        	} else {
+        		alert("회원가입이 취소되었습니다.");
+        		return false;
+        	}
         }
-        return true;
+        form.submit(); // 폼 제출
     }
     
+    // 알림문구
     function setMessage(msg, element){
         document.getElementById("msg").innerHTML = `<i class="fa fa-exclamation-circle"> ${'${msg}'}</i>`;
         if(element) {
@@ -121,22 +138,15 @@
     		var pass1 = $('#pwd').val();
     		var pass2 = $('#pwd2').val();
 
-    		if(pass1 == pass2)
-        		$('#result').html("비밀번호가 일치합니다").css('color',"green");
-    		else
-        		$('#result').html("비밀번호가 일치하지 않습니다").css('color','red');
-    		    return;
+    		if(pass1 == pass2) {
+        		$('#result').html("비밀번호가 일치합니다.").css('color',"green");
+    		} else {
+        		$('#result').html("비밀번호가 일치하지 않습니다.").css('color','red');
+    		    return false;
+    		}    
 		});    
-		
 	});
     
-    // 유효성검사
-    function formSubmit() {
-    	var form = document.form;
-        alert("111");
-    	
-    	form.submit(); // 폼 제출
-    }	
     /* $("#join").on("click", function(){
     	//if (){
         	location.href="<c:url value='/register/add'/>";
