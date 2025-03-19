@@ -146,12 +146,7 @@
     		}    
 		});    
 	});
-    
-    /* $("#join").on("click", function(){
-    	//if (){
-        	location.href="<c:url value='/register/add'/>";
-    	//}
-    }); */
+	 
 </script>
 </body>
 </html>
