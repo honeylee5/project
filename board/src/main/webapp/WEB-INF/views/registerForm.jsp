@@ -62,10 +62,6 @@
             color:red;
             margin-bottom: 20px;
         }
-
-        .sns-chk {
-            margin-top : 5px;
-        }
     </style>
     <title>Register</title>
 </head>
@@ -88,12 +84,7 @@
     <label for="">이메일</label>
     <input class="input-field" type="text" name="email" placeholder="example@naver.co.kr">
     <label for="">생일</label>
-    <input class="input-field" type="text" name="birth" placeholder="2020-12-31">
-    <div class="sns-chk">
-        <label><input type="checkbox" name="sns" value="facebook"/>페이스북</label>
-        <label><input type="checkbox" name="sns" value="kakaotalk"/>카카오톡</label>
-        <label><input type="checkbox" name="sns" value="instagram"/>인스타그램</label>
-    </div>
+    <input class="input-field" type="text" name="birth" placeholder="2025-03-10">
     <input id="submit" type="submit" value="회원 가입">
 </form>    
 
@@ -145,7 +136,6 @@
     		}    
 		});    
 	});
-	 
 </script>
 </body>
 </html>

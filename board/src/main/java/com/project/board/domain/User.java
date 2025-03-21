@@ -9,17 +9,15 @@ public class User {
     private String name;
     private String email;
     private Date birth;
-    private String sns;
     private Date reg_date;
 
     public User(){}
-    public User(String id, String pwd, String name, String email, Date birth, String sns, Date reg_date) {
+    public User(String id, String pwd, String name, String email, Date birth, Date reg_date) {
         this.id = id;
         this.pwd = pwd;
         this.name = name;
         this.email = email;
         this.birth = birth;
-        this.sns = sns;
         this.reg_date = reg_date;
     }
 
@@ -28,12 +26,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id) && Objects.equals(pwd, user.pwd) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(birth, user.birth) && Objects.equals(sns, user.sns);
+        return id.equals(user.id) && Objects.equals(pwd, user.pwd) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(birth, user.birth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pwd, name, email, birth, sns, reg_date);
+        return Objects.hash(id, pwd, name, email, birth, reg_date);
     }
 
     @Override
@@ -44,7 +42,6 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", birth=" + birth +
-                ", sns='" + sns + '\'' +
                 ", reg_date=" + reg_date +
                 '}';
     }
@@ -88,15 +85,6 @@ public class User {
     public void setBirth(Date birth) {
         this.birth = birth;
     }
-
-    public String getSns() {
-        return sns;
-    }
-
-    public void setSns(String sns) {
-        this.sns = sns;
-    }
-
     public Date getReg_date() {
         return reg_date;
     }

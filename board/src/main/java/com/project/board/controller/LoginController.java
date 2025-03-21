@@ -78,22 +78,6 @@ public class LoginController {
         return "registerForm";
     }
     
-    /*
-    @PostMapping("/join")
-    //public String add(String id, String pwd, String name, String email, Date birth, String sns)  {
-      
-      public String add(User user, HttpSession session)  {
-    	String id = (String)session.getAttribute("id");
-        user.setId(id);
-        System.out.println("ID"+ user.getId());
-      	try {
-			 //user = userDao.insertUser(user); 
-  		} catch (Exception e) {
-  			e.printStackTrace();
-  		}
-      	return "registerForm";
-      }
-      */
     private boolean loginCheck(String id, String pwd) {
         User user = null;
 
