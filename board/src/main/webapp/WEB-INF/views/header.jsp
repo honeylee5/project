@@ -8,9 +8,13 @@
 <!DOCTYPE html>
 <script> 
     function confirmLogout() {        
-	     if(confirm("정말 로그아웃 하시겠습니까?")) { 
-	         alert('로그아웃 되었습니다.');   
-	     }    
+		if(confirm("로그아웃 하시겠습니까?")) {
+			alert("로그아웃이 정상적으로 완료되었습니다.");
+			return true;
+		} else {
+			alert("로그아웃이 취소되었습니다.");
+			return false;
+		}    
 	}    
 </script>
 
