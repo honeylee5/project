@@ -1164,13 +1164,9 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>date|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="313" parent="289" name="sns">
-      <DasType>varchar(30)|0s</DasType>
-      <Position>6</Position>
-    </column>
     <column id="314" parent="289" name="reg_date">
       <DasType>datetime|0s</DasType>
-      <Position>7</Position>
+      <Position>6</Position>
     </column>
     <index id="315" parent="289" name="PRIMARY">
       <ColNames>id</ColNames>

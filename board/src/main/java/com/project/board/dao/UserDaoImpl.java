@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao {
                 user.setName(rs.getString(3));
                 user.setEmail(rs.getString(4));
                 user.setBirth(new Date(rs.getDate(5).getTime()));
-                user.setReg_date(new Date(rs.getTimestamp(7).getTime()));
+                user.setReg_date(new Date(rs.getTimestamp(6).getTime()));
             }
         }
 
@@ -98,8 +98,8 @@ public class UserDaoImpl implements UserDao {
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getEmail());
             pstmt.setDate(4, new java.sql.Date(user.getBirth().getTime()));
-            pstmt.setTimestamp(6, new java.sql.Timestamp(user.getReg_date().getTime()));
-            pstmt.setString(7, user.getId());
+            pstmt.setTimestamp(5, new java.sql.Timestamp(user.getReg_date().getTime()));
+            pstmt.setString(6, user.getId());
 
             rowCnt = pstmt.executeUpdate();
         }
