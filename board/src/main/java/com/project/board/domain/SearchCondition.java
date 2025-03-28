@@ -10,7 +10,6 @@ public class SearchCondition {
     private Integer pageSize = DEFAULT_PAGE_SIZE;
     private String  option = "";
     private String  keyword = "";
-//    private Integer  offset;
 
     public static final int MIN_PAGE_SIZE = 5;
     public static final int DEFAULT_PAGE_SIZE = 10;
@@ -34,9 +33,7 @@ public class SearchCondition {
     }
 
     public String getQueryString(Integer page) {
-        // ?page=10&pageSize=10&option=A&keyword=title
-        // ex) https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=이상헌
-        return UriComponentsBuilder.newInstance() // UriComponentsBuilder : URI를 동적으로 생성해주는 클래스
+        return UriComponentsBuilder.newInstance()
                 .queryParam("page",     page)
                 .queryParam("pageSize", pageSize)
                 .queryParam("option",   option)

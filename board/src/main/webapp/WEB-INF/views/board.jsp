@@ -209,7 +209,6 @@
                 return;
             }
             
-            alert("11111");
             $.ajax({
                 type:'POST',       // 요청 메서드
                 url: '/board/comments?bno='+bno,  // 요청 URI
@@ -221,7 +220,6 @@
                 },
                 error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
             }); // $.ajax()
-            alert("22222");
 
             $("#replyForm").css("display", "none")
             $("input[name=replyComment]").val('')

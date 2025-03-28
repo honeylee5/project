@@ -5,7 +5,6 @@
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
-<h2>{name:"abc", age:10}</h2>
 <button id="sendBtn" type="button">SEND</button>
 <h2>Data From Server :</h2>
 <div id="data"></div>
@@ -16,7 +15,7 @@
 
         $("#sendBtn").click(function(){
             $.ajax({
-                type:'POST',       // 요청 메서드
+                type:'POST',         // 요청 메서드
                 url: '/board/send',  // 요청 URI
                 headers : { "content-type": "application/json"}, // 요청 헤더
                 dataType : 'text', // 전송받을 데이터의 타입

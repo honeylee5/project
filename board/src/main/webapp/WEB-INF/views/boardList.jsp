@@ -38,7 +38,6 @@
             margin: 0 auto;
             background-color:#ffffff;
             border-radius: 10px;
-            /* border: 1px solid black; */
         }
         .search-container {
             background-color: rgb(253, 253, 250);
@@ -83,7 +82,6 @@
         }
 
         .search-button {
-            /* 메뉴바의 검색 버튼 아이콘  */
             width: 20%;
             height: 100%;
             background-color: rgb(22, 22, 22);
@@ -155,12 +153,12 @@
             margin : auto;
         }
         .btn-write {
-            background-color: rgb(236, 236, 236); /* Blue background */
-            border: none; /* Remove borders */
-            color: black; /* White text */
-            padding: 6px 12px; /* Some padding */
-            font-size: 16px; /* Set a font size */
-            cursor: pointer; /* Mouse pointer on hover */
+            background-color: rgb(236, 236, 236); 
+            border: none; 
+            color: black; 
+            padding: 6px 12px; 
+            font-size: 16px; 
+            cursor: pointer; 
             border-radius: 5px;
             margin-left: 30px;
         }

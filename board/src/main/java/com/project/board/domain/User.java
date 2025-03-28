@@ -93,7 +93,6 @@ public class User {
         this.reg_date = reg_date;
     }
 	public void setBirth(String parameter) {
-		// TODO Auto-generated method stub
 		
 	}
 }

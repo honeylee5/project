@@ -22,7 +22,6 @@
     <ul>
         <li><a href="<c:url value='/'/>">Home</a></li>
         <li><a href="<c:url value='/board/read'/>">Board</a></li>
-        <%-- <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li> --%>
         <c:choose>
         <c:when test="${loginId eq ''}">
         <li>

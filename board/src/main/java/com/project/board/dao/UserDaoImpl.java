@@ -28,10 +28,7 @@ public class UserDaoImpl implements UserDao {
                PreparedStatement pstmt = conn.prepareStatement(sql);
         ){
             pstmt.setString(1, id);
-            return pstmt.executeUpdate(); //  insert, delete, update
-//      } catch (Exception e) {
-//          e.printStackTrace();
-//          throw e;
+            return pstmt.executeUpdate();
         }
     }
 
@@ -46,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 
         ){
             pstmt.setString(1, id);
-            ResultSet rs = pstmt.executeQuery(); //  select (setString 한 후에 해야한다.)
+            ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
                 user = new User();
@@ -70,7 +67,7 @@ public class UserDaoImpl implements UserDao {
 
         try(
                 Connection conn = ds.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql); // SQL Injection공격, 성능향상
+                PreparedStatement pstmt = conn.prepareStatement(sql);
         ){
             pstmt.setString(1, user.getId());
             pstmt.setString(2, user.getPwd());

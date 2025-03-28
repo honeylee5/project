@@ -55,18 +55,18 @@ public class LoginController {
         session.setAttribute("id", id);
 
         if(rememberId) {
-            //     1. 쿠키를 생성
-            Cookie cookie = new Cookie("id", id); // ctrl+shift+o 자동 import
-//		       2. 응답에 저장
+            // 1. 쿠키를 생성
+            Cookie cookie = new Cookie("id", id);
+            // 2. 응답에 저장
             response.addCookie(cookie);
         } else {
             // 1. 쿠키를 삭제
-            Cookie cookie = new Cookie("id", id); // ctrl+shift+o 자동 import
+            Cookie cookie = new Cookie("id", id);
             cookie.setMaxAge(0); // 쿠키를 삭제
-//		       2. 응답에 저장
+            // 2. 응답에 저장
             response.addCookie(cookie);
         }
-//		       3. 홈으로 이동
+        // 3. 홈으로 이동
         toURL = toURL==null || toURL.equals("") ? "/" : toURL;
 
         return "redirect:"+toURL;
@@ -80,15 +80,12 @@ public class LoginController {
     
     private boolean loginCheck(String id, String pwd) {
         User user = null;
-
         try {
             user = userDao.selectUser(id);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-
         return user!=null && user.getPwd().equals(pwd);
-//        return "asdf".equals(id) && "1234".equals(pwd);
     }
 }

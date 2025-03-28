@@ -21,7 +21,7 @@ public class BoardController {
 
     @PostMapping("/modify")
     public String modify(BoardDto boardDto, SearchCondition sc, RedirectAttributes rattr, Model m, HttpSession session) {
-        String writer = (String)session.getAttribute("id"); // getAttribute(). 선택한 요소의 선택한 속성 값을 가져온다
+        String writer = (String)session.getAttribute("id");
         boardDto.setWriter(writer);
 
         try {
@@ -29,20 +29,18 @@ public class BoardController {
                 throw new Exception("Modify failed.");
 
             rattr.addFlashAttribute("msg", "MOD_OK");
-            return "redirect:/board/list"+sc.getQueryString(); // redirect : 클라이언트의 요청에 의해 서버의 DB에 변화가 생기는 작업에 사용된다.
-                                                               // forward : 건내주기. 따라서 사용자가 최초로 요청한 요청정보는 다음 URL에서도 유효하다.
+            return "redirect:/board/list"+sc.getQueryString(); 
         } catch (Exception e) {
             e.printStackTrace();
-            m.addAttribute(boardDto); // addAttribute : value(값) 추가
-            m.addAttribute("msg", "MOD_ERR"); // addAttribute(String name, Object value) : value 객체를 name 이름으로 추가한다.
+            m.addAttribute(boardDto); 
+            m.addAttribute("msg", "MOD_ERR");
             return "board";
         }
     }
 
     @GetMapping("/write")
-    public String write(Model m) { // board.jsp의 글쓰기 화면으로 이동
-        m.addAttribute("mode", "new"); // addAttribute (String name, Object value) 'new' 라는 객체를 'mode'라는 이름으로 추가한다.
-
+    public String write(Model m) { 
+        m.addAttribute("mode", "new");
         return "board";
     }
 
@@ -54,9 +52,8 @@ public class BoardController {
         try {
             if (boardService.write(boardDto) != 1)
                 throw new Exception("Write failed.");
-
             rattr.addFlashAttribute("msg", "WRT_OK");
-            return "redirect:/board/list"; // redirect : /board/list로 보내기만함 (get방식)
+            return "redirect:/board/list";
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute(boardDto);
@@ -67,21 +64,21 @@ public class BoardController {
     }
 
     @GetMapping("/read")
-    public String read(Integer bno, SearchCondition sc, RedirectAttributes rattr, Model m) {
+    public String read(Integer bno, SearchCondition sc, RedirectAttributes rattr, Model m) { // 글읽기 메소드
         try {
             BoardDto boardDto = boardService.read(bno);
-            m.addAttribute(boardDto); // 모델에 담아서
+            m.addAttribute(boardDto);
         } catch (Exception e) {
             e.printStackTrace();
-            rattr.addFlashAttribute("msg", "READ_ERR"); // RedirectAttributes에 넣으면 리로드 해도 메시지가 한번만 나옴
+            rattr.addFlashAttribute("msg", "READ_ERR");
             return "redirect:/board/list"+sc.getQueryString();
         }
 
-        return "board";              // 뷰로 전달
+        return "board";
     }
 
     @PostMapping("/remove")
-    public String remove(Integer bno, SearchCondition sc, RedirectAttributes rattr, HttpSession session) {
+    public String remove(Integer bno, SearchCondition sc, RedirectAttributes rattr, HttpSession session) { // 글삭제
         String writer = (String)session.getAttribute("id");
         String msg = "DEL_OK";
 
@@ -93,14 +90,14 @@ public class BoardController {
             msg = "DEL_ERR";
         }
 
-        rattr.addFlashAttribute("msg", msg);  // RedirectAttributes에 넣으면 리로드 해도 메시지가 한번만 나옴
+        rattr.addFlashAttribute("msg", msg);
         return "redirect:/board/list"+sc.getQueryString();
     }
 
     @GetMapping("/list")
     public String list(Model m, SearchCondition sc, HttpServletRequest request) {
         if(!loginCheck(request))
-            return "redirect:/login/login?toURL="+request.getRequestURL();  // 로그인을 안했으면 로그인 화면으로 이동
+            return "redirect:/login/login?toURL="+request.getRequestURL();
 
         try {
             int totalCnt = boardService.getSearchResultCnt(sc);
@@ -120,7 +117,7 @@ public class BoardController {
             m.addAttribute("totalCnt", 0);
         }
 
-        return "boardList"; // 로그인을 한 상태이면, 게시판 화면으로 이동
+        return "boardList";
     }
 
     private boolean loginCheck(HttpServletRequest request) {
