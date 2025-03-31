@@ -22,7 +22,7 @@
         }
         
         form {
-            padding:20px;
+            padding:0px 20px 20px 20px;
        	    border-radius: 0 0 10px 10px;
             background-color:#ffffff;
         } 
@@ -31,13 +31,13 @@
             width : 50%;
             margin : auto;
         	background-color:#ffffff;
+        	border: 2px solid rgb(89,117,196);
         	border-radius: 10px;
         }
 
         .writing-header {
-            padding:20px;
             position: relative;
-            margin: 20px 0 0 0;
+            margin: 20px;
             padding-bottom: 10px;
             border-bottom: 1px solid #323232;
         }
@@ -80,9 +80,19 @@
         }
         
         .major {
-            padding:20px;
+            position: relative;
+            border: 2px solid rgb(89,117,196);
+            border-bottom-style: none;
+            padding: 20px;
         	border-radius: 10px 10px 0 0;
             background-color:#ffffff;
+            border-bottom: 1px solid #323232;
+        }
+        
+        .combined {
+            padding: 20px;
+            border: 2px solid rgb(89,117,196);
+            border-top-style: none;
         }
         
         .comment {

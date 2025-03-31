@@ -33,10 +33,12 @@
         }
 
         .board-container {
-            width: 60%;
-            height: 925px;
+            width: 50%;
+            height: 850px;
             margin: 0 auto;
+            padding: 20px;
             background-color:#ffffff;
+            border: 1px solid rgb(89,117,196);
             border-radius: 10px;
         }
         .search-container {
@@ -44,7 +46,6 @@
             width: 100%;
             height: 110px;
             border: 1px solid #ddd;
-            margin-top : 10px;
             margin-bottom: 30px;
             display: flex;
             justify-content: center;
