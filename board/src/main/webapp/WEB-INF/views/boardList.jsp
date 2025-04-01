@@ -149,6 +149,9 @@
         .paging-container {
             width:100%;
             height: 70px;
+            left: 0;
+            bottom:0%;
+            position: absolute;
             display: flex;
             margin-top: 50px;
             margin : auto;
@@ -203,7 +206,7 @@
             <tr>
                 <th class="no">번호</th>
                 <th class="title">제목</th>
-                <th class="writer">이름</th>
+                <th class="writer">ID</th>
                 <th class="regdate">등록일</th>
                 <th class="viewcnt">조회수</th>
             </tr>
