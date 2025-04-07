@@ -17,11 +17,11 @@
 		}    
 	}    
 </script>
-
+<input type="hidden" name="bno" value="${boardDto.bno}">
 <div id="menu">
     <ul>
         <li><a href="<c:url value='/'/>">Home</a></li>
-        <li><a href="<c:url value='/board/read'/>">Board</a></li>
+        <li><a href="<c:url value='/board/list'/>">Board</a></li>
         <c:choose>
         <c:when test="${loginId eq ''}">
         <li>

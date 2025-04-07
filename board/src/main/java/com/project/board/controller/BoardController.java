@@ -1,17 +1,25 @@
 package com.project.board.controller;
 
-import com.project.board.domain.*;
-import com.project.board.service.*;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-import org.springframework.ui.*;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import javax.servlet.http.*;
-import java.time.*;
-import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.project.board.domain.BoardDto;
+import com.project.board.domain.PageHandler;
+import com.project.board.domain.SearchCondition;
+import com.project.board.service.BoardService;
 
 @Controller
 @RequestMapping("/board")
@@ -66,6 +74,10 @@ public class BoardController {
     @GetMapping("/read")
     public String read(Integer bno, SearchCondition sc, RedirectAttributes rattr, Model m) { // 글읽기 메소드
         try {
+        	System.out.println("bno : " + bno);
+        	System.out.println("sc : " + sc);
+        	System.out.println("rattr : " + rattr);
+        	System.out.println("m : " + m);
             BoardDto boardDto = boardService.read(bno);
             m.addAttribute(boardDto);
         } catch (Exception e) {

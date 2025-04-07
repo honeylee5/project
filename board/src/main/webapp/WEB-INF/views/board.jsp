@@ -146,6 +146,8 @@
 	</form>
 </section>
 <script>
+    let bno = ${boardDto.bno};
+    
     $(document).ready(function(){
         let formCheck = function() {
             let form = document.getElementById("form");
@@ -212,13 +214,13 @@
         $("#register").click(function(){
         	let replyComment = $("textarea[name=replyComment]").val();
             let pcno = $("#replyForm").parent().attr("data-pcno");
-        	alert(pcno);
+
             if(replyComment.trim()==''){
                 alert("댓글을 입력해주세요.");
                 $("input[name=replyComment]").focus()
                 return;
             }
-
+            
             $.ajax({
                 type:'POST',       // 요청 메서드
                 url: '/board/comments?bno='+bno,  // 요청 URI
