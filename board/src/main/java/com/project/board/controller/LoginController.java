@@ -45,7 +45,7 @@ public class LoginController {
         if(!loginCheck(id, pwd)) {
             // 2-1   일치하지 않으면, loginForm으로 이동
             String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
-
+     
             return "redirect:/login/login?msg="+msg;
         }
         // 2-2. id와 pwd가 일치하면,
@@ -72,7 +72,7 @@ public class LoginController {
         return "redirect:"+toURL;
     }
     
-   
+    
     @GetMapping("/join")
     public String registerForm() {
         return "registerForm";

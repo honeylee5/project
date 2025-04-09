@@ -68,7 +68,7 @@
     <h3 id="title">Login</h3>
     <div id="msg">
         <c:if test="${not empty param.msg}">
-            <i class="fa fa-exclamation-circle" >${URLDecoder.decode(param.msg)}</i>
+            <i class="fa fa-exclamation-circle" >&nbsp;${param.msg}</i>
         </c:if>
     </div>
     <input type="text" name="id" value="${cookie.id.value}" placeholder="이메일 입력" autofocus>
