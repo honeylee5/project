@@ -72,12 +72,7 @@ public class LoginController {
         return "redirect:"+toURL;
     }
     
-    
-    @GetMapping("/join")
-    public String registerForm() {
-        return "registerForm";
-    }
-    
+    // 로그인 체크
     private boolean loginCheck(String id, String pwd) {
         User user = null;
         try {
@@ -87,5 +82,10 @@ public class LoginController {
             return false;
         }
         return user!=null && user.getPwd().equals(pwd);
+    }
+    
+    @GetMapping("/join")
+    public String registerForm() {
+        return "registerForm";
     }
 }

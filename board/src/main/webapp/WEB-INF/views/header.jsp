@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
-<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'Logout'}"/>
+<c:set var="loginOutLink" value="${loginId=='' || loginId == null ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${loginId=='' || loginId == null ? 'Login' : 'Logout'}"/>
 <!DOCTYPE html>
 <script> 
     function confirmLogout() {        

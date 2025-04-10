@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<c:url value='/css/bg.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <style>
         * { box-sizing:border-box; }
         a { text-decoration: none; }
@@ -76,7 +77,8 @@
     <input type="hidden" name="toURL" value="${param.toURL}">
     <button>로그인</button>
     <div>
-        <label><input type="checkbox" name="rememberId" value="on" ${empty cookie.id.value ? "":"checked"}> 아이디 기억</label> |
+        <label>
+        <input type="checkbox" name="rememberId" value="on" ${empty cookie.id.value ? "":"checked"}> 아이디 기억</label> |
         <a href="">비밀번호 찾기</a> |
         <a href="<c:url value='/register/add'/>">회원가입</a>
     </div>

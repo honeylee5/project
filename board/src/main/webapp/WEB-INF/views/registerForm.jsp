@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<c:url value='/css/bg.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <style>
         * { box-sizing:border-box; }
         form {
@@ -122,20 +123,6 @@
         }
     }
     
-	 // 비밀번호 확인
-	$(document).ready(function(){
-		$('#pwd2').keyup(function(){
-    		var pass1 = $('#pwd').val();
-    		var pass2 = $('#pwd2').val();
-
-    		if(pass1 == pass2) {
-        		$('#result').html("비밀번호가 일치합니다.").css('color',"green");
-    		} else {
-        		$('#result').html("비밀번호가 일치하지 않습니다.").css('color','red');
-    		    return false;
-    		}    
-		});    
-	});
 </script>
 </body>
 </html>
