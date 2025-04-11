@@ -17,7 +17,7 @@
     <jsp:include page="header.jsp"/>
 </div>
 <div style="text-align:center">
-    <h1>This is HOME</h1>
+
 </div>
 </body>
 </html>
