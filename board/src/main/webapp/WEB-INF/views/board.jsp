@@ -220,7 +220,6 @@
                 $("input[name=replyComment]").focus()
                 return;
             }
-            alert("pcno : "+pcno);
             
             $.ajax({
                 type:'POST',       // 요청 메서드
