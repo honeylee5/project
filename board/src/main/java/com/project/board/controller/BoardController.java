@@ -27,6 +27,7 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
+    // 글 수정
     @PostMapping("/modify")
     public String modify(BoardDto boardDto, SearchCondition sc, RedirectAttributes rattr, Model m, HttpSession session) {
         String writer = (String)session.getAttribute("id");
@@ -35,7 +36,7 @@ public class BoardController {
         try {
             if (boardService.modify(boardDto)!= 1)
                 throw new Exception("Modify failed.");
-
+            
             rattr.addFlashAttribute("msg", "MOD_OK");
             return "redirect:/board/list"+sc.getQueryString(); 
         } catch (Exception e) {
@@ -46,14 +47,16 @@ public class BoardController {
         }
     }
 
+    
     @GetMapping("/write")
     public String write(Model m) { 
         m.addAttribute("mode", "new");
         return "board";
     }
-
+    
+    // 글 쓰기
     @PostMapping("/write")
-    public String write(BoardDto boardDto, RedirectAttributes rattr, Model m, HttpSession session) { // 글쓰기 메소드
+    public String write(BoardDto boardDto, RedirectAttributes rattr, Model m, HttpSession session) {
         String writer = (String)session.getAttribute("id");
         boardDto.setWriter(writer);
 
@@ -71,13 +74,10 @@ public class BoardController {
         }
     }
 
+    // 글 읽기
     @GetMapping("/read")
-    public String read(Integer bno, SearchCondition sc, RedirectAttributes rattr, Model m) { // 글읽기 메소드
+    public String read(Integer bno, SearchCondition sc, RedirectAttributes rattr, Model m) {
         try {
-        	System.out.println("bno : " + bno);
-        	System.out.println("sc : " + sc);
-        	System.out.println("rattr : " + rattr);
-        	System.out.println("m : " + m);
             BoardDto boardDto = boardService.read(bno);
             m.addAttribute(boardDto);
         } catch (Exception e) {
@@ -89,8 +89,9 @@ public class BoardController {
         return "board";
     }
 
+    // 글 삭제
     @PostMapping("/remove")
-    public String remove(Integer bno, SearchCondition sc, RedirectAttributes rattr, HttpSession session) { // 글삭제
+    public String remove(Integer bno, SearchCondition sc, RedirectAttributes rattr, HttpSession session) {
         String writer = (String)session.getAttribute("id");
         String msg = "DEL_OK";
 
@@ -106,6 +107,7 @@ public class BoardController {
         return "redirect:/board/list"+sc.getQueryString();
     }
 
+    // 글 목록
     @GetMapping("/list")
     public String list(Model m, SearchCondition sc, HttpServletRequest request) {
         if(!loginCheck(request))

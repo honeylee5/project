@@ -26,7 +26,7 @@ comment: <input type="text" name="comment"><br>
               $("#commentList").html(toHtml(result)); // 서버로부터 응답이 도착하면 호출될 함수
             },
             error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
-        }); // $.ajax()
+        });
     }
 
     $(document).ready(function(){
