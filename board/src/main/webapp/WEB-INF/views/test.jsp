@@ -52,7 +52,7 @@ comment: <input type="text" name="comment"><br>
                     showList(bno);          // 댓글목록이 갱신되었는지 보여주기 위해
                 },
                 error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
-            }); // $.ajax()
+            });
         });
 
 
