@@ -146,7 +146,7 @@
 	</form>
 </section>
 <script>
-    let bno = ${boardDto.bno};
+    /* let bno = ${boardDto.bno}; */
     
     $(document).ready(function(){
         let formCheck = function() {

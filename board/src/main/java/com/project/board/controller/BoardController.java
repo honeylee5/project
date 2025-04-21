@@ -27,6 +27,21 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
+    // 글 읽기
+    @GetMapping("/read")
+    public String read(Integer bno, SearchCondition sc, RedirectAttributes rattr, Model m) {
+        try {
+            BoardDto boardDto = boardService.read(bno);
+            m.addAttribute(boardDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            rattr.addFlashAttribute("msg", "READ_ERR");
+            return "redirect:/board/list"+sc.getQueryString();
+        }
+
+        return "board";
+    }
+    
     // 글 수정
     @PostMapping("/modify")
     public String modify(BoardDto boardDto, SearchCondition sc, RedirectAttributes rattr, Model m, HttpSession session) {
@@ -72,21 +87,6 @@ public class BoardController {
             m.addAttribute("msg", "WRT_ERR");
             return "board";
         }
-    }
-
-    // 글 읽기
-    @GetMapping("/read")
-    public String read(Integer bno, SearchCondition sc, RedirectAttributes rattr, Model m) {
-        try {
-            BoardDto boardDto = boardService.read(bno);
-            m.addAttribute(boardDto);
-        } catch (Exception e) {
-            e.printStackTrace();
-            rattr.addFlashAttribute("msg", "READ_ERR");
-            return "redirect:/board/list"+sc.getQueryString();
-        }
-
-        return "board";
     }
 
     // 글 삭제

@@ -28,15 +28,15 @@
         ORDER BY reg_date DESC, bno DESC
     </select>
 
-    <sql id="selectFromBoard">
-        SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
-        FROM board
-    </sql>
-
     <select id="select" parameterType="int" resultType="BoardDto">
         <include refid="selectFromBoard"/>
         WHERE bno = #{bno}
     </select>
+    
+    <sql id="selectFromBoard">
+        SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
+        FROM board
+    </sql>
 
     <select id="selectPage" parameterType="map" resultType="BoardDto">
         <include refid="selectFromBoard"/>
@@ -79,7 +79,7 @@
         </choose>
     </sql>
 
-    <select id="searchSelectPage" parameterType="SearchCondition" resultType="BoardDto"> /*parameterType="SearchCondition" : SearchCondition라는 객체를 받음*/
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="BoardDto">
         SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
         FROM  board
         WHERE true
