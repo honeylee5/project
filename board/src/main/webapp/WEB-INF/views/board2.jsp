@@ -140,16 +140,14 @@
 	</header>
 	<form method="post" action="#" class="combined" style="width:auto;">
 		<textarea name="replyComment" id="replyComment" placeholder="비속어를 사용하지 말아주세요." class="invert" rows="5" style="border-radius:0; resize:none;"></textarea>
-		<input id="register" type="button" class="primary" value="+ 등록" onclick='comment(bno)' style="font-weight: 900;"/>
+		<input id="register" type="button" class="primary" value="+ 등록" style="font-weight: 900;"/>
 	</form>
 	<form id="replies" class="combined" style="flex-direction:column; margin:0; display:contents;">
 	</form>
 </section>
 <script>
-    function comment(bno) {
-    	alert("bno = " + bno);
-    }
-   
+    /* let bno = ${boardDto.bno}; */
+    
     $(document).ready(function(){
         let formCheck = function() {
             let form = document.getElementById("form");
@@ -213,133 +211,10 @@
             location.href="<c:url value='/board/list${searchCondition.queryString}'/>";
         });
         
-        $(document).ready(function(){getList();}); /* 위의 문서가 준비되면 getList()를 실행해라 */
-    	
-    	let pageContext = "${pageContext.request.contextPath}";
-    	let bno = "${BoardDto.getBno()}";
-    	alert('pageContext = ' + pageContext);
-    	alert('bno = ' + bno);
-    	
-    	function getList(){ 
-    		$.ajax({
-    			url: pageContext + "/board/BoardReplyListOk.bo?bno=" + bno, /* 해당 게시물의 번호를 전달 */
-    			type: "get",
-    			dataType: "json",
-    			success: showList
-    		});
-    	}
-    	
-    	let replyList;
-    	
-    	function showList(replies){
-    		replyList = replies; // replies를 replyList에 넣어준다.
-    		let text = "";
-    		
-    		if(replies != null && replies.length != 0){ // 댓글이 하나라도 있다면 
-    			$.each(replies, function(index, reply){
-    				text += "<div id='reply'>";
-    				text += "<p class='writer'>" + reply.memberId + "</p>"; // 작성자
-    				text += "<div class='content' id='" + (index + 1) +"' style='width:100%'><pre>" + reply.replyContent + "</pre></div>" // index가 1부터 시작할 수 있게끔
-    				if("${sessionId}" == reply.memberId){ // 작성자가 단 댓글이라면
-    					text += "<input type='button' id='ready" + (index + 1) + "' class='primary' onclick=readyToUpdate(" + (index + 1) + ") value='수정'>"; // 수정버튼
-    					text += "<input type='button' id='ok" + (index + 1) + "' class='primary' style='display:none' onclick='update(" + (index + 1) + "," + reply.replyNum + ")' value='수정완료'>"; // 수정완료버튼
-    					text += "<input type='button' id='remove" + (index + 1) + "' class='primary' onclick='deleteReply(" + reply.replyNum + ")' value='삭제'>"; //삭제버튼
-    				}
-    				text += "</div>";
-    			});
-    		}else{ // 댓글이 하나도 없으면
-    			text = "<p>댓글이 없습니다.</p>";
-    		}
-    		
-    		$("#replies").html(text); // id:replies에 꽂아준다.
-    	}
-    	
-    	function comment(){ // 댓글등록
-    		let replyContent = $("textarea[name='content']").val(); // 대댓글을 달 댓글을 가져온다.
-    		
-    		console.log(replyContent);
-    		$.ajax({
-    			url: pageContext + "/board/BoardReplyWriteOk.bo",
-    			type: "post", // 댓글은 길기 때문에 post로 보내야 오류가 잘 안난다.
-    			data: {"bno": bno, "replyContent": replyContent}, // 받아올 것들
-    			success: function(){ // 성공하면
-    				$("textarea[name='content']").val(""); // 글쓰기 칸을 지워준다. (메크로 방지)
-    				getList(); // 다시 댓글 목록을 뿌려줘야 한다.
-    			}
-    		});
-    	}
-    	
-    	let check = false;
-    	
-    	//수정 버튼
-    	function readyToUpdate(index){ // index를 받음
-    		let div = $("#" + index);
-    		let modifyReady = $("#ready" + index);
-    		let modifyOk = $("#ok" + index);
-    		let remove = $("#remove" + index);
-    		
-    		if(!check){ // 수정중인 댓글이 없을때
-    			div.replaceWith("<textarea name='replyContent' id='" + index + "' class='invert' style='border-radius:0; resize:none;'>" + div.text() + "</textarea>") // 기존에 있었던 것을 ""안의 태그로 바꿔줌
-    			remove.replaceWith("<input type='button' id='cancel" + index + "' value='취소' onclick=updateCancel(" + index + ")>") // replaceWith : 괄호안에 것으로 바꿔준다.
-    			
-    			modifyReady.hide(); //
-    			modifyOk.show(); // 수정완료를 보여줌
-    			check = true; // 수정중
-    		}else{
-    			alert("수정중인 댓글이 있습니다.");
-    		}
-    	}
-    	
-    	//수정 취소
-    	function updateCancel(index){ // index를 받음
-    		let remove = $("#cancel" + index); // cancel부분으로 수정되어 있으므로
-    		let textarea = $("#" + index);
-    		let modifyReady = $("#ready" + index);
-    		let modifyOk = $("#ok" + index);
-    		
-    		modifyReady.show(); // 수정버튼 나타나게 하기
-    		modifyOk.hide(); //수정완료버튼 감추기
-    		
-    		remove.replaceWith("<input type='button' id='remove" + index + "' class='primary' onclick='' value='삭제'>"); // 다시 remove(삭제)로 바꿔준다.
-    		textarea.replaceWith("<div class='content' id='" + index + "' style='width:100%'><pre>" + replyList[index - 1].replyContent + "</pre></div>"); // 다시 원래대로 바꿔준다.
-    		check = false;
-    	}
-    	
-    	//수정 완료
-    	function update(index, replyNum){
-    		let replyContent = $("textarea#" + index).val();
-    		let json = new Object();
-    		
-    		json.replyNum = replyNum; // 대댓글번호
-    		json.replyContent = replyContent; // 대댓글내용
-    		
-    		$.ajax({
-    			url: pageContext + "/board/BoardReplyModifyOk.bo",
-    			type: "post", // 댓글 내용이 길기 때문에 post
-    			data: json, // json객체로 받는다.			
-    			success: function(){
-    				check = false;
-    				getList(); // 수정이 완료된게 확인되야하므로 다시 getList를 불러온다.
-    			}
-    		});
-    	}
-    	
-    	//댓글 삭제
-    	function deleteReply(replyNum){
-    		$.ajax({
-    			url: pageContext + "/board/BoardReplyDeleteOk.bo",
-    			type: "post",
-    			data: {"replyNum": replyNum},
-    			success: function(){
-    				getList();
-    			}
-    		});
-    	}
-        
         // 댓글등록
-        $("#register").click(function(bno){
+        $("#register").click(function(){
         	let replyComment = $("textarea[name=replyComment]").val();
-        	alert('bno = ' + bno);
+        	let bno = "1";
             let pcno = $("#replyForm").parent().attr("data-pcno");
 
             if(replyComment.trim()==''){

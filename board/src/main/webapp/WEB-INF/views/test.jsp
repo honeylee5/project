@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<c:set var="boardDto" value="${BoardDto.bno}"/>
 <html>
 <head>
     <title>Title</title>
@@ -16,12 +18,12 @@ comment: <input type="text" name="comment"><br>
     <button id="wrtRepBtn" type="button">등록</button>
 </div>
 <script>
-    let bno = 1085;
+    let bno = "1";
 
     let showList = function(bno){
         $.ajax({
             type:'GET',       // 요청 메서드
-            url: '/board/comments?bno'+bno,  // 요청 URI
+            url: '/board/comments?bno='+bno,  // 요청 URI
             success : function(result){
               $("#commentList").html(toHtml(result)); // 서버로부터 응답이 도착하면 호출될 함수
             },
